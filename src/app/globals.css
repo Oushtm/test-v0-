@@ -6,9 +6,9 @@
   --primary: #293F92;
   --secondary: #FF6B6B;
   --accent: #4ECDC4;
-  --background: #1a1a1a;
-  --text: #ffffff;
-  --text-light: #a0aec0;
+  --background: #ffffff;
+  --text-color: #333333;
+  --text-light: #666666;
   --success: #48BB78;
   --warning: #ECC94B;
   --error: #F56565;
@@ -17,39 +17,48 @@
 }
 
 @layer base {
+  html {
+    @apply scroll-smooth;
+  }
+
   body {
-    @apply text-white;
+    @apply bg-white text-gray-800 min-h-screen;
     font-family: 'Inter', sans-serif;
   }
 
   h1 {
-    @apply text-4xl font-bold mb-4;
+    @apply text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900;
   }
 
   h2 {
-    @apply text-3xl font-bold mb-3;
+    @apply text-xl sm:text-2xl md:text-3xl font-bold text-gray-900;
   }
 
   h3 {
-    @apply text-2xl font-bold mb-2;
+    @apply text-lg sm:text-xl md:text-2xl font-bold text-gray-900;
   }
 
   h4 {
-    @apply text-xl font-bold mb-2;
+    @apply text-lg sm:text-xl md:text-2xl font-bold mb-2;
   }
 
   p {
-    @apply mb-4;
+    @apply text-base text-gray-600 leading-relaxed;
   }
 }
 
 @layer components {
-  .container {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  .container-custom {
+    @apply w-full mx-auto px-4 sm:px-6;
+    max-width: 1300px;
+  }
+
+  .section-padding {
+    @apply py-8 sm:py-12 md:py-16;
   }
 
   .btn {
-    @apply inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm transition-all duration-200;
+    @apply px-4 py-2 rounded-md font-medium transition-colors duration-200;
   }
 
   .btn-primary {
@@ -57,15 +66,40 @@
   }
 
   .btn-secondary {
-    @apply bg-secondary text-white hover:bg-secondary/90;
-  }
-
-  .btn-outline {
-    @apply border-navy text-navy hover:bg-navy/10;
+    @apply bg-white text-navy border border-navy hover:bg-navy/5;
   }
 
   .card {
-    @apply bg-white rounded-lg shadow-md p-6;
+    @apply bg-white p-4 rounded-lg shadow-md;
+  }
+
+  .grid-responsive {
+    @apply grid gap-4 sm:gap-6 md:gap-8;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+
+  .flex-responsive {
+    @apply flex flex-col sm:flex-row gap-4;
+  }
+
+  .text-responsive {
+    @apply text-sm sm:text-base md:text-lg;
+  }
+
+  .padding-responsive {
+    @apply p-4 sm:p-6 lg:p-8;
+  }
+
+  .margin-responsive {
+    @apply m-4 sm:m-6 lg:m-8;
+  }
+
+  .gap-responsive {
+    @apply gap-4 sm:gap-6 lg:gap-8;
+  }
+
+  .image-responsive {
+    @apply w-full h-auto object-cover;
   }
 
   .gradient-border {
@@ -85,7 +119,7 @@
   }
 
   .animate-fade-in {
-    @apply animate-[fadeIn_0.5s_ease-in-out];
+    animation: fadeIn 0.3s ease-in-out;
   }
 
   .animate-shine::after {
@@ -179,14 +213,6 @@ input, select, textarea {
 
 .hover-card {
   @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
-}
-
-.section {
-  @apply py-16 md:py-24;
-}
-
-.container {
-  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
 }
 
 .grid-auto-fit {
@@ -1006,4 +1032,12 @@ h3 {
   .light .card-light-mode {
     @apply bg-white text-gray-800;
   }
+}
+
+.hover-scale {
+  @apply transition-transform duration-200 hover:scale-105;
+}
+
+.hover-shadow {
+  @apply transition-shadow duration-200 hover:shadow-lg;
 } 

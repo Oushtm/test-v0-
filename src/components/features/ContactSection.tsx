@@ -26,86 +26,27 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="py-24 relative">
+    <section id="contact" className="py-12 sm:py-24 relative">
       <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-3xl mx-auto text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">
+        {/* Header */}
+        <div className="max-w-3xl mx-auto text-center mb-8 sm:mb-16">
+          <div className="inline-flex items-center gap-2 bg-[#0fc28b]/10 text-[#0fc28b] px-4 py-2 rounded-full font-semibold text-sm sm:text-base mb-4">
+            <Phone className="w-5 h-5 sm:w-6 sm:h-6" />
+            Contact Premium
+          </div>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">
             Contactez-nous
           </h2>
-          <p className="text-gray-300 text-lg leading-relaxed">
+          <p className="text-base sm:text-lg text-gray-300 leading-relaxed max-w-2xl mx-auto px-4">
             Notre équipe est à votre disposition pour répondre à toutes vos questions
             sur l'investissement locatif et notre simulateur.
           </p>
         </div>
 
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
-          {/* Contact Information */}
-          <div className="space-y-8">
-            <div className="bg-white/5 backdrop-blur-sm p-8 rounded-xl border border-white/10">
-              <h3 className="text-2xl font-semibold text-white mb-6">
-                Informations de contact
-              </h3>
-              <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <div className="p-3 bg-blue-500/10 rounded-lg">
-                    <Mail className="w-6 h-6 text-blue-400" />
-                  </div>
-                  <div>
-                    <h4 className="font-medium text-white">Email</h4>
-                    <p className="text-gray-300">contact@simulateur-locatif.fr</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <div className="p-3 bg-blue-500/10 rounded-lg">
-                    <Phone className="w-6 h-6 text-blue-400" />
-                  </div>
-                  <div>
-                    <h4 className="font-medium text-white">Téléphone</h4>
-                    <p className="text-gray-300">01 23 45 67 89</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <div className="p-3 bg-blue-500/10 rounded-lg">
-                    <MapPin className="w-6 h-6 text-blue-400" />
-                  </div>
-                  <div>
-                    <h4 className="font-medium text-white">Adresse</h4>
-                    <p className="text-gray-300">
-                      123 Avenue des Champs-Élysées<br />
-                      75008 Paris, France
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-white/5 backdrop-blur-sm p-8 rounded-xl border border-white/10">
-              <h3 className="text-2xl font-semibold text-white mb-6">
-                Horaires d'ouverture
-              </h3>
-              <div className="space-y-4">
-                <div className="flex justify-between">
-                  <span className="text-gray-300">Lundi - Vendredi</span>
-                  <span className="font-medium text-white">9h00 - 18h00</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-300">Samedi</span>
-                  <span className="font-medium text-white">10h00 - 14h00</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-300">Dimanche</span>
-                  <span className="font-medium text-white">Fermé</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Contact Form */}
-          <div className="bg-white/5 backdrop-blur-sm p-8 rounded-xl border border-white/10">
-            <h3 className="text-2xl font-semibold text-white mb-6">
-              Envoyez-nous un message
-            </h3>
-            <form onSubmit={handleSubmit} className="space-y-6">
+        {/* Contact Form Card */}
+        <div className="max-w-2xl mx-auto bg-white/5 backdrop-blur-xl p-6 sm:p-8 rounded-2xl border border-white/10 mb-8 sm:mb-16">
+          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
                   Nom complet
@@ -116,8 +57,7 @@ const ContactSection = () => {
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+                  className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-[#0fc28b] focus:ring-1 focus:ring-[#0fc28b] transition-colors"
                   placeholder="Votre nom"
                 />
               </div>
@@ -131,10 +71,10 @@ const ContactSection = () => {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/50"
-                  placeholder="Votre email"
+                  className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-[#0fc28b] focus:ring-1 focus:ring-[#0fc28b] transition-colors"
+                  placeholder="votre@email.com"
                 />
+              </div>
               </div>
               <div>
                 <label htmlFor="phone" className="block text-sm font-medium text-gray-300 mb-2">
@@ -146,7 +86,7 @@ const ContactSection = () => {
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+                className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-[#0fc28b] focus:ring-1 focus:ring-[#0fc28b] transition-colors"
                   placeholder="Votre numéro de téléphone"
                 />
               </div>
@@ -159,22 +99,55 @@ const ContactSection = () => {
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
-                  required
                   rows={4}
-                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/50"
-                  placeholder="Votre message"
+                className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-[#0fc28b] focus:ring-1 focus:ring-[#0fc28b] transition-colors resize-none"
+                placeholder="Votre message..."
                 />
               </div>
               <button
                 type="submit"
-                className="w-full bg-blue-500 text-white py-3 px-6 rounded-lg font-medium hover:bg-blue-600 transition-colors duration-300 flex items-center justify-center gap-2"
+              className="w-full sm:w-auto bg-gradient-to-r from-[#0fc28b] to-[#0fc28b]/80 text-white font-medium py-3 px-8 rounded-xl flex items-center justify-center gap-2 shadow-lg hover:shadow-xl hover:scale-105 transition-all"
               >
-                <Send className="w-5 h-5" />
-                Envoyer le message
+              <Send className="w-4 h-4" />
+              <span>Envoyer le message</span>
               </button>
             </form>
+        </div>
+
+        {/* Contact Info Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 max-w-4xl mx-auto">
+          <a href="tel:+212123456789" className="bg-white/5 backdrop-blur-xl p-6 rounded-xl border border-white/10 flex items-center gap-4 group hover:scale-105 transition-transform">
+            <div className="bg-[#0fc28b]/10 p-3 rounded-lg group-hover:bg-[#0fc28b]/20 transition-colors">
+              <Phone className="w-6 h-6 text-[#0fc28b]" />
+            </div>
+            <div>
+              <h3 className="text-white font-medium">Téléphone</h3>
+              <p className="text-gray-400 text-sm">+212 123-456-789</p>
+            </div>
+          </a>
+          <a href="mailto:contact@rentabilio.com" className="bg-white/5 backdrop-blur-xl p-6 rounded-xl border border-white/10 flex items-center gap-4 group hover:scale-105 transition-transform">
+            <div className="bg-[#0fc28b]/10 p-3 rounded-lg group-hover:bg-[#0fc28b]/20 transition-colors">
+              <Mail className="w-6 h-6 text-[#0fc28b]" />
+            </div>
+            <div>
+              <h3 className="text-white font-medium">Email</h3>
+              <p className="text-gray-400 text-sm break-all">contact@rentabilio.com</p>
+            </div>
+          </a>
+          <div className="bg-white/5 backdrop-blur-xl p-6 rounded-xl border border-white/10 flex items-center gap-4 group hover:scale-105 transition-transform">
+            <div className="bg-[#0fc28b]/10 p-3 rounded-lg group-hover:bg-[#0fc28b]/20 transition-colors">
+              <MapPin className="w-6 h-6 text-[#0fc28b]" />
+            </div>
+            <div>
+              <h3 className="text-white font-medium">Adresse</h3>
+              <p className="text-gray-400 text-sm">Casablanca, Maroc</p>
+            </div>
           </div>
         </div>
+
+        {/* Decorative Elements */}
+        <div className="absolute -top-32 -left-32 w-72 h-72 bg-[#0fc28b]/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-0 w-72 h-72 bg-[#0fc28b]/10 rounded-full blur-3xl" />
       </div>
     </section>
   );

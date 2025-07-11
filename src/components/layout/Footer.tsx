@@ -109,9 +109,9 @@ const Footer = () => {
         </div>
 
         <div className="mt-12 pt-8 border-t border-gray-800">
-          <p className="text-center text-gray-400 text-sm">
-            © {new Date().getFullYear()} RNB Real Estate. All rights reserved.
-          </p>
+          <div className="text-center text-sm text-gray-400">
+            <p>© 2025 RENTABILIO. Created by Oussama Hatim.</p>
+          </div>
         </div>
       </div>
     </footer>

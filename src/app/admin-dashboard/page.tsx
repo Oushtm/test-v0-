@@ -55,6 +55,21 @@ import {
   Brightness7,
 } from "@mui/icons-material";
 import { PieChart, Pie, Cell, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from "recharts";
+import Image from "next/image";
+
+// Add this interface after the imports
+interface Request {
+  id: number;
+  name: string;
+  email: string;
+  phone: string;
+  propertyType: string;
+  rooms: number;
+  city: string;
+  estimatedPrice: string;
+  status: string;
+  date: string;
+}
 
 // Mock data
 const initialRequests = [
@@ -162,11 +177,11 @@ const recentActivity = [
 export default function AdminDashboard() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const [requests, setRequests] = useState(initialRequests);
-  const [selectedRequest, setSelectedRequest] = useState(null);
+  const [requests, setRequests] = useState<Request[]>(initialRequests);
+  const [selectedRequest, setSelectedRequest] = useState<Request | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [colorMode, setColorMode] = useState('dark');
-  const [notifAnchorEl, setNotifAnchorEl] = useState(null);
+  const [notifAnchorEl, setNotifAnchorEl] = useState<null | HTMLElement>(null);
   const [search, setSearch] = useState('');
 
   const handleDrawerToggle = () => {
@@ -183,7 +198,7 @@ export default function AdminDashboard() {
 
   const isMenuOpen = Boolean(anchorEl);
 
-  const handleStatusChange = (id, newStatus) => {
+  const handleStatusChange = (id: number, newStatus: string) => {
     setRequests((prev) =>
       prev.map((req) =>
         req.id === id ? { ...req, status: newStatus } : req
@@ -191,7 +206,7 @@ export default function AdminDashboard() {
     );
   };
 
-  const handleOpenModal = (request) => {
+  const handleOpenModal = (request: Request) => {
     setSelectedRequest(request);
     setModalOpen(true);
   };
@@ -201,7 +216,7 @@ export default function AdminDashboard() {
     setSelectedRequest(null);
   };
 
-  const handleNotifOpen = (event) => setNotifAnchorEl(event.currentTarget);
+  const handleNotifOpen = (event: React.MouseEvent<HTMLElement>) => setNotifAnchorEl(event.currentTarget);
   const handleNotifClose = () => setNotifAnchorEl(null);
 
   const filteredRequests = requests.filter(r =>
@@ -223,17 +238,13 @@ export default function AdminDashboard() {
         borderRadius: 2,
         mx: 2
       }}>
-        <Typography 
-          variant="h5" 
-          sx={{ 
-            fontWeight: 700, 
-            background: 'linear-gradient(to right, #60a5fa, #8b5cf6)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-          }}
-        >
-          RENTABILIO
-        </Typography>
+        <Image 
+          src="/Add a heading.png"
+          alt="RENTABILIO"
+          width={150}
+          height={40}
+          style={{ objectFit: 'contain' }}
+        />
       </Box>
       <Divider sx={{ mb: 2 }} />
       <List>
@@ -322,9 +333,13 @@ export default function AdminDashboard() {
         backdropFilter: 'blur(8px)',
       }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-          <Typography variant="h6" sx={{ fontWeight: 800, letterSpacing: '-1px', background: 'linear-gradient(to right, #60a5fa, #8b5cf6)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', display: { xs: 'none', sm: 'block' } }}>
-            RENTABILIO
-          </Typography>
+          <Image 
+            src="/Add a heading.png"
+            alt="RENTABILIO"
+            width={150}
+            height={40}
+            style={{ objectFit: 'contain' }}
+          />
         </Box>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
           {/* Notifications Bell */}

@@ -13,12 +13,63 @@ import {
   Clock,
   BarChart2,
   Home,
-  Building
+  Building,
+  Users,
+  Brush,
+  KeyRound,
+  Wrench,
+  Megaphone,
+  Camera,
+  Globe,
+  CalendarCheck,
+  LifeBuoy,
+  Mail,
+  X
 } from 'lucide-react';
 import Image from 'next/image';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogClose } from "@/components/ui/dialog";
+import { useState } from 'react';
+
+// Define types for our data
+interface Value {
+  icon: any;
+  title: string;
+  description: string;
+}
+
+interface TeamMember {
+  image: string;
+  title: string;
+  description: string;
+}
 
 export default function AboutPage() {
-  const values = [
+  const [selectedMember, setSelectedMember] = useState<null | 'zakaria' | 'simohamed'>(null);
+
+  const teamMembers = {
+    zakaria: {
+      name: "Zakaria Ghoulam",
+      role: "Fondateur & Gestionnaire principal",
+      image: "/images/team/zakaria.jpg",
+      bio: "Expert en gestion immobilière avec plus de 10 ans d'expérience dans le secteur. Passionné par l'innovation et l'amélioration continue des services de conciergerie.",
+      expertise: ["Gestion immobilière", "Stratégie d'investissement", "Optimisation locative"],
+      education: "Master en Gestion Immobilière",
+      languages: ["Français", "Arabe", "Anglais"],
+      contact: "zakaria@rentabilio.com"
+    },
+    simohamed: {
+      name: "Simohamed",
+      role: "Co-fondateur & Relation Client",
+      image: "/images/team/simohamed.jpg",
+      bio: "Spécialiste en relation client avec une approche centrée sur la satisfaction des propriétaires et des locataires. Expert en communication et gestion de la qualité de service.",
+      expertise: ["Relation client", "Gestion de la qualité", "Communication"],
+      education: "Master en Management des Services",
+      languages: ["Français", "Arabe", "Anglais"],
+      contact: "simohamed@rentabilio.com"
+    }
+  };
+
+  const values: Value[] = [
     {
       icon: Target,
       title: "Précision",
@@ -41,606 +92,411 @@ export default function AboutPage() {
     }
   ];
 
-  const stats = [
-    {
-      icon: Calculator,
-      value: "50,000+",
-      label: "Simulations",
-      description: "Simulations réalisées avec succès"
-    },
-    {
-      icon: MapPin,
-      value: "15+",
-      label: "Villes",
-      description: "Couverture nationale"
-    },
-    {
-      icon: Clock,
-      value: "13",
-      label: "Années d'Expérience",
-      description: "Dans l'analyse immobilière"
-    },
-    {
-      icon: BarChart2,
-      value: "95%",
-      label: "Précision",
-      description: "Taux de précision des estimations"
-    }
-  ];
-
-  const features = [
-    {
-      title: "Simulation Instantanée",
-      description: "Obtenez une estimation immédiate de la valeur de votre bien en quelques clics.",
-      image: "/images/features/instant-simulation.jpg",
-      icon: Calculator
-    },
-    {
-      title: "Analyse de Marché",
-      description: "Bénéficiez d'une analyse détaillée du marché immobilier local.",
-      image: "/images/features/market-analysis.jpg",
-      icon: BarChart2
-    },
-    {
-      title: "Rapport Personnalisé",
-      description: "Recevez un rapport complet avec des recommandations personnalisées.",
-      image: "/images/features/custom-report.jpg",
-      icon: Building
-    }
-  ];
-
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-gray-900">
       {/* Hero Section */}
-      <section className="relative py-32 overflow-hidden">
-        <div className="absolute inset-0">
-          <Image
-            src="/images/3d-rendering-loft-scandinavian-living-room-with-working-table-bookshelf.jpg"
-            alt="Modern Scandinavian Interior"
-            fill
-            className="object-cover"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-br from-gray-900/90 via-gray-800/80 to-gray-900/90" />
-          <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-20" />
-        </div>
-
-        <div className="container mx-auto px-4 relative z-10">
+      <section className="relative min-h-[60vh] sm:min-h-[70vh] flex items-center justify-center overflow-hidden">
+        {/* Premium background image with dark overlay */}
+        <Image
+          src="/images/2224.jpg"
+          alt="Intérieur Premium Casablanca"
+          fill
+          className="absolute inset-0 w-full h-full object-cover object-center scale-105"
+          style={{ zIndex: 0 }}
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/80" style={{ zIndex: 1 }} />
+        {/* Glassmorphism content card */}
+        <div className="relative z-10 w-full flex flex-col items-center justify-center text-center px-4 sm:px-6">
           <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+            className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 sm:px-5 py-2 rounded-full mb-4 sm:mb-6 shadow-lg border border-white/10"
+          >
+            <span className="relative flex h-3 w-3">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#0fc28b] opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-[#0fc28b]"></span>
+            </span>
+            <span className="text-white/90 text-sm font-semibold tracking-wide">Conciergerie haut de gamme</span>
+          </motion.div>
+          <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-6xl mx-auto text-center"
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 tracking-tight max-w-4xl"
           >
-            <motion.h1 
-              className="text-5xl md:text-7xl font-bold mb-6 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white via-blue-200 to-blue-400"
-              initial={{ scale: 0.95 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 0.5 }}
-            >
-              À propos de RNB
-            </motion.h1>
-            <motion.p 
-              className="text-2xl text-gray-200 mb-8 leading-relaxed max-w-3xl mx-auto font-light"
+            Votre Partenaire de Confiance en Gestion Locative
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.4 }}
+            className="text-base sm:text-lg md:text-xl text-gray-300 max-w-2xl mx-auto px-4"
+          >
+            Découvrez comment nous transformons l'investissement immobilier en une expérience simple et rentable
+          </motion.p>
+        </div>
+      </section>
+
+      {/* Decorative Banner */}
+      <div className="relative h-16 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0fc28b]/20 via-[#0fc28b]/20 to-[#0fc28b]/20" />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="w-24 h-1 bg-gradient-to-r from-[#0fc28b] to-[#0fc28b]/80 rounded-full" />
+        </div>
+      </div>
+
+      {/* Services Section */}
+      <section className="py-16 sm:py-24 relative overflow-hidden">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.8 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className="text-center mb-12 sm:mb-16"
             >
-              RNB vous offre un outil de simulation innovant pour estimer la valeur de votre bien immobilier en quelques clics.
-            </motion.p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Modern Decorative Banner with enhanced 3D effect */}
-      <div className="relative h-32 overflow-hidden">
-        {/* Animated background gradients */}
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-blue-500/20 animate-gradient-x" />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gray-900/50 to-transparent" />
-        </div>
-
-        {/* Decorative elements */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="relative w-full max-w-6xl mx-auto px-4 flex items-center justify-between">
-            {/* Left decorative line */}
-            <div className="w-1/3 h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent transform -skew-y-6" />
-            
-            {/* Center circle */}
-            <div className="relative">
-              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500/20 to-purple-500/20 backdrop-blur-xl border border-white/10 transform rotate-45 flex items-center justify-center">
-                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-400/40 to-purple-400/40 backdrop-blur-xl animate-pulse" />
-              </div>
-              {/* Orbital rings */}
-              <div className="absolute inset-0 w-12 h-12 rounded-full border border-blue-500/20 animate-spin-slow" style={{ animationDuration: '10s' }} />
-              <div className="absolute inset-0 w-12 h-12 rounded-full border border-purple-500/20 animate-spin-slow" style={{ animationDuration: '15s' }} />
-            </div>
-            
-            {/* Right decorative line */}
-            <div className="w-1/3 h-px bg-gradient-to-r from-transparent via-purple-500/50 to-transparent transform skew-y-6" />
-          </div>
-        </div>
-
-        {/* Floating particles */}
-        <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/4 w-2 h-2 rounded-full bg-blue-400/40 animate-float" />
-          <div className="absolute top-1/3 right-1/3 w-2 h-2 rounded-full bg-purple-400/40 animate-float-delayed" />
-          <div className="absolute bottom-1/4 right-1/4 w-2 h-2 rounded-full bg-blue-400/40 animate-float" />
-        </div>
-      </div>
-
-      {/* Add required styles to the top of your file or in your global CSS */}
-      <style jsx global>{`
-        @keyframes gradient-x {
-          0%, 100% {
-            background-position: 0% 50%;
-          }
-          50% {
-            background-position: 100% 50%;
-          }
-        }
-        
-        @keyframes float {
-          0%, 100% {
-            transform: translateY(0);
-          }
-          50% {
-            transform: translateY(-10px);
-          }
-        }
-        
-        @keyframes float-delayed {
-          0%, 100% {
-            transform: translateY(0);
-          }
-          50% {
-            transform: translateY(-10px);
-          }
-        }
-        
-        .animate-gradient-x {
-          animation: gradient-x 15s ease infinite;
-          background-size: 200% 200%;
-        }
-        
-        .animate-float {
-          animation: float 3s ease-in-out infinite;
-        }
-        
-        .animate-float-delayed {
-          animation: float 3s ease-in-out infinite;
-          animation-delay: 1.5s;
-        }
-        
-        .animate-spin-slow {
-          animation: spin 20s linear infinite;
-        }
-      `}</style>
-
-      {/* Features Section with enhanced 3D and modern design */}
-      <section className="py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5" />
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="max-w-6xl mx-auto"
-          >
-            <div className="text-center mb-16">
-              <motion.h2 
-                className="text-4xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-200"
-                initial={{ opacity: 0, y: -20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                viewport={{ once: true }}
-              >
+              <h2 className="text-3xl sm:text-4xl font-bold mb-4 sm:mb-6 text-white">
                 Nos Services
-              </motion.h2>
-              <motion.p 
-                className="text-xl text-gray-300 max-w-2xl mx-auto"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-                viewport={{ once: true }}
-              >
-                Découvrez nos outils innovants pour l'estimation immobilière
-              </motion.p>
-            </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {features.map((feature, index) => (
+              </h2>
+              <p className="text-base sm:text-xl text-gray-300 max-w-2xl mx-auto px-4">
+                Découvrez nos services de gestion locative haut de gamme, pensés pour votre tranquillité d'esprit.
+              </p>
+            </motion.div>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+              {/* Service Cards */}
               <motion.div
-                key={feature.title}
                 initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                  whileHover={{ 
-                    scale: 1.02,
-                    rotateY: 5,
-                    transition: { duration: 0.3 }
-                  }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                  className="group bg-gray-800/40 backdrop-blur-xl rounded-2xl border border-gray-700/50 hover:border-blue-500/50 transition-all transform perspective-1000 hover:shadow-2xl hover:shadow-blue-500/20 overflow-hidden"
-              >
-                  <div className="relative h-64 overflow-hidden">
-                    <Image
-                      src={feature.image}
-                      alt={feature.title}
-                      fill
-                      className="object-cover transform group-hover:scale-110 transition-transform duration-700"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/50 to-transparent" />
-                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                  </div>
-
-                  <div className="p-8">
-                    <div className="flex items-center space-x-4 mb-4">
-                      <div className="w-12 h-12 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-xl flex items-center justify-center transform transition-all duration-300 group-hover:scale-110 group-hover:rotate-6">
-                        <feature.icon className="w-6 h-6 text-blue-400" />
-                      </div>
-                      <h3 className="text-2xl font-bold text-white">{feature.title}</h3>
-                    </div>
-                    <p className="text-gray-300 text-lg leading-relaxed">{feature.description}</p>
-                  </div>
-
-                  <div className="px-8 pb-6">
-                    <motion.div
-                      whileHover={{ x: 5 }}
-                      className="flex items-center text-blue-400 font-medium"
-                    >
-                      En savoir plus
-                      <svg
-                        className="w-5 h-5 ml-2 transform transition-transform group-hover:translate-x-1"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M9 5l7 7-7 7"
-                        />
-                      </svg>
-                    </motion.div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Modern Decorative Banner */}
-      <div className="relative h-16 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-blue-500/20" />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full" />
-        </div>
-      </div>
-
-      {/* Mission Section with enhanced 3D and modern design */}
-      <section className="py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5" />
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="max-w-6xl mx-auto"
-          >
-            <div className="grid md:grid-cols-2 gap-16 items-center">
-              <motion.div 
-                className="relative h-[600px] rounded-2xl overflow-hidden group perspective-1000"
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.3 }}
-              >
-                <Image
-                  src="/images/about-mission.jpg"
-                  alt="Notre mission"
-                  fill
-                  className="object-cover transform group-hover:scale-110 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/50 to-transparent" />
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-              </motion.div>
-              <div className="space-y-8">
-                <motion.h2 
-                  className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-200"
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5 }}
-                  viewport={{ once: true }}
-                >
-                  Notre Mission
-                </motion.h2>
-                <motion.p 
-                  className="text-xl text-gray-300 leading-relaxed"
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: 0.1 }}
-                  viewport={{ once: true }}
-                >
-              Notre mission est de démocratiser l'accès à l'information immobilière en fournissant des outils de simulation 
-              précis et accessibles à tous. Que vous soyez propriétaire, investisseur ou simplement curieux, nous mettons 
-              à votre disposition notre expertise pour vous aider à prendre des décisions éclairées.
-                </motion.p>
-                <div className="space-y-6">
-                  {[
-                    { icon: Target, text: "Analyse approfondie du marché immobilier" },
-                    { icon: Shield, text: "Stratégie de gestion optimisée" },
-                    { icon: Heart, text: "Accompagnement personnalisé" }
-                  ].map((item, index) => (
-                    <motion.div 
-                      key={index}
-                      className="flex items-start space-x-4 p-4 rounded-xl bg-gray-800/30 backdrop-blur-sm border border-gray-700/50 hover:border-blue-500/50 transition-colors"
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      whileHover={{ x: 10 }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
-                      viewport={{ once: true }}
-                    >
-                      <div className="p-3 rounded-lg bg-blue-500/20">
-                        <item.icon className="w-6 h-6 text-blue-400" />
-                      </div>
-                      <p className="text-gray-300 text-lg">{item.text}</p>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Modern Decorative Banner */}
-      <div className="relative h-16 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-blue-500/20" />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full" />
-        </div>
-      </div>
-
-      {/* Stats Section with enhanced 3D */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="max-w-6xl mx-auto"
-          >
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                  whileHover={{ 
-                    scale: 1.05,
-                    rotateX: 5,
-                    transition: { duration: 0.3 }
-                  }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                  className="bg-gray-800/50 backdrop-blur-xl p-8 rounded-2xl border border-gray-700 hover:border-blue-500/50 transition-all transform perspective-1000 hover:shadow-2xl hover:shadow-blue-500/20"
-              >
-                  <div className="w-16 h-16 bg-blue-500/20 rounded-xl flex items-center justify-center mb-6 transform transition-transform duration-300 hover:scale-110">
-                    <stat.icon className="w-8 h-8 text-blue-400" />
-                </div>
-                  <h3 className="text-4xl font-bold text-white mb-3">{stat.value}</h3>
-                  <p className="text-gray-300 font-medium text-lg mb-2">{stat.label}</p>
-                  <p className="text-gray-400">{stat.description}</p>
-              </motion.div>
-            ))}
-          </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Modern Decorative Banner */}
-      <div className="relative h-16 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-blue-500/20" />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full" />
-        </div>
-      </div>
-
-      {/* Values Section with enhanced 3D and modern design */}
-      <section className="py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5" />
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="max-w-6xl mx-auto"
-          >
-            <div className="text-center mb-16">
-              <motion.h2 
-                className="text-4xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-200"
-                initial={{ opacity: 0, y: -20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
                 viewport={{ once: true }}
+                className="group bg-white/10 backdrop-blur-xl rounded-xl sm:rounded-2xl border border-gray-700/50 hover:border-[#0fc28b]/50 transition-all p-6 sm:p-8"
               >
-                Nos Valeurs
-              </motion.h2>
-              <motion.p 
-                className="text-xl text-gray-300 max-w-2xl mx-auto"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-                viewport={{ once: true }}
-              >
-              Nos valeurs fondamentales guident le développement de nos outils de simulation
-              </motion.p>
-            </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {values.map((value, index) => (
-              <motion.div
-                key={value.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                  whileHover={{ 
-                    scale: 1.05,
-                    rotateX: 5,
-                    rotateY: 2,
-                  }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="bg-gray-800/40 backdrop-blur-xl p-8 rounded-2xl border border-gray-700/50 hover:border-blue-500/50 transition-all transform perspective-1000 hover:shadow-2xl hover:shadow-blue-500/20"
-                >
-                  <div className="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-xl flex items-center justify-center mb-6 transform transition-all duration-300 group-hover:scale-110 hover:rotate-6">
-                    <value.icon className="w-8 h-8 text-blue-400" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-white mb-4">{value.title}</h3>
-                  <p className="text-gray-300 text-lg leading-relaxed">{value.description}</p>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Modern Decorative Banner */}
-      <div className="relative h-16 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-blue-500/20" />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full" />
-        </div>
-      </div>
-
-      {/* Team Section with enhanced 3D and modern design */}
-      <section className="py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-blue-500/5" />
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="max-w-6xl mx-auto"
-          >
-            <div className="text-center mb-16">
-              <motion.h2 
-                className="text-4xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-200"
-                initial={{ opacity: 0, y: -20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                viewport={{ once: true }}
-              >
-                Notre Équipe
-              </motion.h2>
-              <motion.p 
-                className="text-xl text-gray-300 max-w-2xl mx-auto"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-                viewport={{ once: true }}
-              >
-                Une équipe d'experts passionnés à votre service
-              </motion.p>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {[
-                { image: "/images/team-1.jpg", title: "Équipe Direction", description: "Leadership et vision stratégique" },
-                { image: "/images/team-2.jpg", title: "Équipe Technique", description: "Innovation et expertise" },
-                { image: "/images/team-3.jpg", title: "Équipe Conseil", description: "Accompagnement personnalisé" }
-              ].map((team, index) => (
-                <motion.div
-                  key={index}
-                  className="relative h-[500px] rounded-2xl overflow-hidden group perspective-1000"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                >
-                  <Image
-                    src={team.image}
-                    alt={team.title}
-                    fill
-                    className="object-cover transform group-hover:scale-110 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/50 to-transparent" />
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                  <div className="absolute bottom-0 left-0 right-0 p-8 transform group-hover:translate-y-[-10px] transition-transform duration-500">
-                    <h3 className="text-2xl font-bold text-white mb-2">{team.title}</h3>
-                    <p className="text-gray-300 text-lg">{team.description}</p>
+                <div className="w-12 h-12 sm:w-14 sm:h-14 mb-4 sm:mb-6 flex items-center justify-center rounded-xl bg-[#0fc28b]/20">
+                  <Brush className="w-6 h-6 sm:w-7 sm:h-7 text-[#0fc28b]" />
                 </div>
+                <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3">Ménage</h3>
+                <p className="text-sm sm:text-base text-gray-200">Nous nous occupons du ménage pour que votre résidence soit toujours impeccable.</p>
               </motion.div>
-            ))}
-          </div>
-          </motion.div>
-        </div>
-      </section>
 
-      {/* Modern Decorative Banner */}
-      <div className="relative h-16 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 via-blue-500/20 to-purple-500/20" />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full" />
-        </div>
-      </div>
-
-      {/* CTA Section with enhanced 3D and modern design */}
-      <section className="py-24 relative overflow-hidden">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="max-w-4xl mx-auto relative"
-          >
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 opacity-50 blur-3xl" />
-            <motion.div 
-              className="relative bg-gray-800/50 backdrop-blur-xl p-12 rounded-2xl border border-gray-700/50 overflow-hidden"
-              whileHover={{ scale: 1.02 }}
-              transition={{ duration: 0.3 }}
-            >
-              <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/20 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2" />
-              <div className="absolute bottom-0 left-0 w-64 h-64 bg-purple-500/20 rounded-full blur-3xl transform -translate-x-1/2 translate-y-1/2" />
-              
-              <motion.h2 
-                className="text-4xl font-bold mb-6 text-white text-center"
-                initial={{ opacity: 0, y: -20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                viewport={{ once: true }}
-              >
-                Prêt à Simuler ?
-              </motion.h2>
-              <motion.p 
-                className="text-xl text-gray-200 mb-8 text-center"
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
                 viewport={{ once: true }}
+                className="group bg-white/10 backdrop-blur-xl rounded-2xl border border-gray-700/50 hover:border-[#0fc28b]/50 transition-all p-8"
               >
-              Découvrez la valeur de votre bien immobilier en quelques clics
-              </motion.p>
-              <motion.div 
-                className="flex justify-center"
+                <div className="w-14 h-14 mb-4 flex items-center justify-center rounded-xl bg-[#0fc28b]/20">
+                  <KeyRound className="w-7 h-7 text-[#0fc28b]" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-2">Check-in / Check-out</h3>
+                <p className="text-gray-200">Gestion des arrivées et départs pour une expérience fluide.</p>
+              </motion.div>
+
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
                 viewport={{ once: true }}
+                className="group bg-white/10 backdrop-blur-xl rounded-2xl border border-gray-700/50 hover:border-[#0fc28b]/50 transition-all p-8"
               >
-            <a
-              href="/simulate"
-                  className="inline-flex items-center px-8 py-4 rounded-xl bg-white text-blue-600 hover:bg-gray-100 font-medium transition-all transform hover:scale-105 hover:shadow-xl"
-            >
-              Lancer la Simulation
-            </a>
+                <div className="w-14 h-14 mb-4 flex items-center justify-center rounded-xl bg-[#0fc28b]/20">
+                  <Wrench className="w-7 h-7 text-[#0fc28b]" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-2">Maintenance</h3>
+                <p className="text-gray-200">Maintenance régulière pour garantir un séjour sans souci.</p>
               </motion.div>
-            </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                viewport={{ once: true }}
+                className="group bg-white/10 backdrop-blur-xl rounded-2xl border border-gray-700/50 hover:border-[#0fc28b]/50 transition-all p-8"
+              >
+                <div className="w-14 h-14 mb-4 flex items-center justify-center rounded-xl bg-[#0fc28b]/20">
+                  <Megaphone className="w-7 h-7 text-[#0fc28b]" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-2">Création d'annonce</h3>
+                <p className="text-gray-200">Création et optimisation de vos annonces pour maximiser vos revenus.</p>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Decorative Banner */}
+      <div className="relative h-16 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0fc28b]/20 via-[#0fc28b]/20 to-[#0fc28b]/20" />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="w-24 h-1 bg-gradient-to-r from-[#0fc28b] to-[#0fc28b]/80 rounded-full" />
+        </div>
+      </div>
+
+      {/* Team Section */}
+      <section className="py-12 sm:py-24 bg-gray-800/50">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="max-w-6xl mx-auto"
+          >
+            <div className="text-center mb-12 sm:mb-16">
+              <h2 className="text-3xl sm:text-4xl font-bold mb-4 sm:mb-6 text-white">
+                Notre Équipe
+              </h2>
+              <p className="text-base sm:text-xl text-gray-300 max-w-2xl mx-auto px-4">
+                Une équipe d'experts passionnés à votre service
+              </p>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 max-w-4xl mx-auto">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                viewport={{ once: true }}
+                className="relative group cursor-pointer h-[400px]"
+                onClick={() => setSelectedMember('zakaria')}
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-[#0fc28b] to-[#0fc28b]/80 rounded-xl sm:rounded-2xl blur opacity-25 group-hover:opacity-100 transition duration-500"></div>
+                <div className="relative h-full bg-white/5 backdrop-blur-xl rounded-xl sm:rounded-2xl border border-white/10 overflow-hidden">
+                  <div className="absolute inset-0">
+                    <Image
+                      src="/images/team/zakaria.jpg"
+                      alt="Zakaria Ghoulam"
+                      fill
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/50 to-transparent"></div>
+                  </div>
+                  <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
+                    <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">Zakaria Ghoulam</h3>
+                    <p className="text-sm sm:text-base text-gray-300">Fondateur & Gestionnaire principal</p>
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                viewport={{ once: true }}
+                className="relative group cursor-pointer h-[400px]"
+                onClick={() => setSelectedMember('simohamed')}
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-[#0fc28b] to-[#0fc28b]/80 rounded-xl sm:rounded-2xl blur opacity-25 group-hover:opacity-100 transition duration-500"></div>
+                <div className="relative h-full bg-white/5 backdrop-blur-xl rounded-xl sm:rounded-2xl border border-white/10 overflow-hidden">
+                  <div className="absolute inset-0">
+                    <Image
+                      src="/images/team/simohamed.jpg"
+                      alt="Simohamed"
+                      fill
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/50 to-transparent"></div>
+                  </div>
+                  <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
+                    <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">Simohamed</h3>
+                    <p className="text-sm sm:text-base text-gray-300">Co-fondateur & Relation Client</p>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Team Member Dialog */}
+      <Dialog open={selectedMember !== null} onOpenChange={() => setSelectedMember(null)}>
+        <DialogContent className="max-w-3xl bg-gradient-to-br from-gray-900/95 to-gray-800/95 backdrop-blur-xl border border-white/10 shadow-2xl p-0 overflow-hidden max-h-[90vh] sm:max-h-[85vh] overflow-y-auto">
+          {selectedMember && (
+            <>
+              {/* Background gradient decoration */}
+              <div className="absolute inset-0 bg-gradient-to-br from-[#0fc28b]/20 via-transparent to-transparent" />
+              
+              <div className="relative z-10">
+                {/* Header with large image */}
+                <div className="relative h-40 sm:h-64 w-full overflow-hidden">
+                  <Image
+                    src={teamMembers[selectedMember].image}
+                    alt={teamMembers[selectedMember].name}
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent" />
+                  
+                  {/* Close button repositioned */}
+                  <DialogClose className="absolute right-3 top-3 sm:right-4 sm:top-4 rounded-full bg-black/50 p-1.5 sm:p-2 opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-[#0fc28b] focus:ring-offset-2 disabled:pointer-events-none">
+                    <X className="h-4 w-4 text-white" />
+                    <span className="sr-only">Close</span>
+                  </DialogClose>
+                </div>
+
+                {/* Content */}
+                <div className="p-4 sm:p-6 md:p-8">
+                  <DialogHeader className="mb-4 sm:mb-6">
+                    <DialogTitle className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-2">
+                      {teamMembers[selectedMember].name}
+                    </DialogTitle>
+                    <p className="text-base sm:text-lg text-[#0fc28b] font-medium">
+                      {teamMembers[selectedMember].role}
+                    </p>
+                  </DialogHeader>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
+                    {/* Left column */}
+                    <div className="space-y-4 sm:space-y-6">
+                      <div>
+                        <h4 className="text-white font-semibold mb-2 sm:mb-3 text-sm sm:text-base">À propos</h4>
+                        <p className="text-gray-300 leading-relaxed text-sm sm:text-base">
+                          {teamMembers[selectedMember].bio}
+                        </p>
+                      </div>
+
+                      <div>
+                        <h4 className="text-white font-semibold mb-2 sm:mb-3 text-sm sm:text-base">Formation</h4>
+                        <div className="flex items-center gap-2 sm:gap-3 bg-white/5 p-2 sm:p-3 rounded-lg border border-white/10">
+                          <div className="h-8 w-8 sm:h-10 sm:w-10 rounded-full bg-[#0fc28b]/10 flex items-center justify-center">
+                            <Target className="h-4 w-4 sm:h-5 sm:w-5 text-[#0fc28b]" />
+                          </div>
+                          <p className="text-gray-300 text-sm sm:text-base">{teamMembers[selectedMember].education}</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Right column */}
+                    <div className="space-y-4 sm:space-y-6">
+                      <div>
+                        <h4 className="text-white font-semibold mb-2 sm:mb-3 text-sm sm:text-base">Expertise</h4>
+                        <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                          {teamMembers[selectedMember].expertise.map((skill, index) => (
+                            <span
+                              key={index}
+                              className="px-2.5 sm:px-3 py-1 sm:py-1.5 bg-[#0fc28b]/10 text-[#0fc28b] rounded-full text-xs sm:text-sm border border-[#0fc28b]/20 hover:bg-[#0fc28b]/20 transition-colors"
+                            >
+                              {skill}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div>
+                        <h4 className="text-white font-semibold mb-2 sm:mb-3 text-sm sm:text-base">Langues</h4>
+                        <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                          {teamMembers[selectedMember].languages.map((language, index) => (
+                            <div
+                              key={index}
+                              className="flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1 sm:py-1.5 bg-white/5 rounded-full text-xs sm:text-sm border border-white/10"
+                            >
+                              <span className="h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-[#0fc28b]" />
+                              <span className="text-gray-300">{language}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div>
+                        <h4 className="text-white font-semibold mb-2 sm:mb-3 text-sm sm:text-base">Contact</h4>
+                        <a
+                          href={`mailto:${teamMembers[selectedMember].contact}`}
+                          className="flex items-center gap-2 sm:gap-3 bg-[#0fc28b]/10 p-2 sm:p-3 rounded-lg border border-[#0fc28b]/20 hover:bg-[#0fc28b]/20 transition-colors group"
+                        >
+                          <div className="h-8 w-8 sm:h-10 sm:w-10 rounded-full bg-[#0fc28b]/20 flex items-center justify-center">
+                            <Mail className="h-4 w-4 sm:h-5 sm:w-5 text-[#0fc28b]" />
+                          </div>
+                          <span className="text-[#0fc28b] text-sm sm:text-base group-hover:underline break-all">
+                            {teamMembers[selectedMember].contact}
+                          </span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
+
+      {/* Decorative Banner */}
+      <div className="relative h-16 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0fc28b]/20 via-[#0fc28b]/20 to-[#0fc28b]/20" />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="w-24 h-1 bg-gradient-to-r from-[#0fc28b] to-[#0fc28b]/80 rounded-full" />
+        </div>
+      </div>
+
+      {/* Values Section */}
+      <section className="py-24 bg-gradient-to-b from-gray-900 to-gray-800">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl font-bold text-white mb-4">Nos Valeurs</h2>
+            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+              Des principes qui guident chacune de nos actions
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+            {values.map((value, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-white/10"
+              >
+                <div className="w-12 h-12 bg-[#0fc28b]/10 rounded-lg flex items-center justify-center mb-4">
+                  <value.icon className="w-6 h-6 text-[#0fc28b]" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-2">{value.title}</h3>
+                <p className="text-gray-300">{value.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Decorative Banner */}
+      <div className="relative h-16 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0fc28b]/20 via-[#0fc28b]/20 to-[#0fc28b]/20" />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="w-24 h-1 bg-gradient-to-r from-[#0fc28b] to-[#0fc28b]/80 rounded-full" />
+        </div>
+      </div>
+
+      {/* CTA Section */}
+      <section className="py-16 sm:py-24">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="max-w-4xl mx-auto bg-white/5 backdrop-blur-xl p-8 sm:p-12 rounded-xl sm:rounded-2xl border border-gray-700/50 text-center"
+          >
+            <h2 className="text-3xl sm:text-4xl font-bold mb-4 sm:mb-6 text-white">
+              Prêt à Commencer ?
+            </h2>
+            <p className="text-base sm:text-xl text-gray-300 mb-6 sm:mb-8">
+              Rejoignez-nous dès aujourd'hui et découvrez comment nous pouvons vous aider à maximiser vos revenus locatifs.
+            </p>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="w-full sm:w-auto bg-[#0fc28b] hover:bg-[#0fc28b]/90 text-white font-bold py-3 px-8 rounded-xl text-base sm:text-lg transition-colors"
+            >
+              Contactez-nous
+            </motion.button>
           </motion.div>
         </div>
       </section>

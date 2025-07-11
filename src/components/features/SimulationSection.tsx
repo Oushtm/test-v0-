@@ -7,10 +7,10 @@ import { Calculator, ArrowRight, BarChart2, Users } from 'lucide-react';
 
 const SimulationSection = () => {
   return (
-    <section className="py-24 bg-gradient-to-b from-white to-blue-50">
+    <section className="py-24 bg-gradient-to-b from-white to-[#0fc28b]/5">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <span className="inline-block px-4 py-2 bg-blue-100 text-blue-600 rounded-full text-sm font-medium mb-4">
+          <span className="inline-block px-4 py-2 bg-[#0fc28b]/10 text-[#0fc28b] rounded-full text-sm font-medium mb-4">
             Simulation
           </span>
           <h2 className="text-4xl font-bold text-gray-900 mb-4">
@@ -31,10 +31,10 @@ const SimulationSection = () => {
                 fill
                 className="object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-blue-900/50 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0fc28b]/50 to-transparent" />
             </div>
-            <div className="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mb-6 group-hover:bg-blue-100 transition-colors">
-              <Calculator className="w-8 h-8 text-blue-600" />
+            <div className="w-16 h-16 bg-[#0fc28b]/10 rounded-full flex items-center justify-center mb-6 group-hover:bg-[#0fc28b]/20 transition-colors">
+              <Calculator className="w-8 h-8 text-[#0fc28b]" />
             </div>
             <h3 className="text-xl font-semibold text-gray-900 mb-3">Simulation rapide</h3>
             <p className="text-gray-600 leading-relaxed">
@@ -50,10 +50,10 @@ const SimulationSection = () => {
                 fill
                 className="object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-blue-900/50 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0fc28b]/50 to-transparent" />
             </div>
-            <div className="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mb-6 group-hover:bg-blue-100 transition-colors">
-              <BarChart2 className="w-8 h-8 text-blue-600" />
+            <div className="w-16 h-16 bg-[#0fc28b]/10 rounded-full flex items-center justify-center mb-6 group-hover:bg-[#0fc28b]/20 transition-colors">
+              <BarChart2 className="w-8 h-8 text-[#0fc28b]" />
             </div>
             <h3 className="text-xl font-semibold text-gray-900 mb-3">Analyse détaillée</h3>
             <p className="text-gray-600 leading-relaxed">
@@ -69,10 +69,10 @@ const SimulationSection = () => {
                 fill
                 className="object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-blue-900/50 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0fc28b]/50 to-transparent" />
             </div>
-            <div className="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mb-6 group-hover:bg-blue-100 transition-colors">
-              <Users className="w-8 h-8 text-blue-600" />
+            <div className="w-16 h-16 bg-[#0fc28b]/10 rounded-full flex items-center justify-center mb-6 group-hover:bg-[#0fc28b]/20 transition-colors">
+              <Users className="w-8 h-8 text-[#0fc28b]" />
             </div>
             <h3 className="text-xl font-semibold text-gray-900 mb-3">Accompagnement</h3>
             <p className="text-gray-600 leading-relaxed">
@@ -84,7 +84,7 @@ const SimulationSection = () => {
         <div className="text-center">
           <Link
             href="/simulate"
-            className="group inline-flex items-center bg-blue-600 text-white px-8 py-4 rounded-lg text-lg font-medium hover:bg-blue-700 transition-all duration-300 relative overflow-hidden"
+            className="group inline-flex items-center bg-[#0fc28b] text-white px-8 py-4 rounded-lg text-lg font-medium hover:bg-[#0fc28b]/90 transition-all duration-300 relative overflow-hidden"
           >
             <span className="relative z-10 flex items-center">
               Lancer la simulation

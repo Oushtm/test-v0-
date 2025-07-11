@@ -5,24 +5,44 @@ import { ChevronDown, HelpCircle } from 'lucide-react';
 
 const faqs = [
   {
-    question: 'Comment fonctionne la simulation de rentabilité ?',
-    answer: 'Notre simulateur analyse plusieurs facteurs clés comme le prix d\'achat, les frais de notaire, les travaux éventuels, les charges, les impôts et le loyer potentiel pour calculer votre rentabilité brute et nette. Vous pouvez ajuster tous ces paramètres en temps réel pour voir leur impact.'
+    question: 'Comment fonctionne le processus d'investissement avec RNB ?',
+    answer: 'Notre processus d\'investissement est simple et transparent. Nous vous accompagnons à chaque étape, de l\'identification des opportunités jusqu\'à la gestion locative. Nos experts analysent le marché, sélectionnent les meilleurs biens et vous conseillent sur les stratégies d\'investissement les plus adaptées à vos objectifs.'
   },
   {
-    question: 'Quels sont les frais à prendre en compte ?',
-    answer: 'Les principaux frais à considérer sont : les frais de notaire (environ 7-8%), les travaux de rénovation, les charges de copropriété, les impôts (taxe foncière, impôt sur le revenu), les assurances, et les frais de gestion si vous passez par une agence.'
+    question: 'Quel est le montant minimum pour investir avec RNB ?',
+    answer: 'Le montant minimum d\'investissement varie selon les opportunités disponibles et les types de biens. Nous travaillons avec différents budgets et pouvons vous proposer des solutions adaptées à votre capacité d\'investissement.'
   },
   {
-    question: 'Comment estimer le loyer potentiel ?',
-    answer: 'Le loyer potentiel dépend de plusieurs facteurs : la localisation, la surface, l\'état du bien, les équipements, et le marché locatif local. Notre simulateur utilise des données réelles du marché pour vous donner une estimation précise.'
+    question: 'Quels types de biens proposez-vous ?',
+    answer: 'Nous proposons une sélection variée de biens immobiliers : studios, appartements et villas dans les quartiers les plus prisés de Casablanca. Chaque bien est soigneusement sélectionné pour son potentiel de rentabilité et sa qualité.'
   },
   {
-    question: 'Quelle est la différence entre rentabilité brute et nette ?',
-    answer: 'La rentabilité brute est calculée en divisant le loyer annuel par le prix d\'achat. La rentabilité nette prend en compte tous les frais (charges, impôts, travaux, etc.) pour vous donner une vision plus réaliste de votre investissement.'
+    question: 'Comment estimez-vous la rentabilité d'un bien ?',
+    answer: 'Notre estimation de rentabilité prend en compte plusieurs facteurs : l\'emplacement, les tendances du marché, les revenus locatifs potentiels, les charges et les perspectives de plus-value. Nous utilisons des données réelles du marché pour fournir des estimations précises.'
   },
   {
-    question: 'Comment optimiser la fiscalité de mon investissement ?',
-    answer: 'Plusieurs dispositifs fiscaux existent pour optimiser votre investissement locatif : le régime micro-foncier, le régime réel, la LMNP, ou encore le Pinel. Notre simulateur vous aide à comparer ces différentes options.'
+    question: 'Proposez-vous des services de gestion locative ?',
+    answer: 'Oui, nous proposons une gestion locative complète incluant la recherche de locataires, la gestion des réservations, l\'entretien du bien, et le suivi des revenus. Notre objectif est de maximiser votre rentabilité tout en minimisant vos contraintes.'
+  },
+  {
+    question: 'Quels sont les frais associés à vos services ?',
+    answer: 'Nos frais sont transparents et compétitifs. Ils varient selon les services choisis et sont clairement détaillés avant tout engagement. Nous nous efforçons de maintenir un excellent rapport qualité-prix pour optimiser votre investissement.'
+  },
+  {
+    question: 'Comment puis-je financer mon investissement immobilier ?',
+    answer: 'Nous travaillons avec plusieurs partenaires financiers pour vous proposer les meilleures solutions de financement. Nos conseillers vous aident à structurer votre financement de manière optimale, en tenant compte de votre situation personnelle.'
+  },
+  {
+    question: 'Est-ce que j'aurai besoin d'un apport personnel ?',
+    answer: 'Un apport personnel est généralement nécessaire pour un investissement immobilier. Le montant varie selon le projet et les conditions de financement. Nos conseillers peuvent vous aider à déterminer l\'apport optimal pour votre situation.'
+  },
+  {
+    question: 'Quels sont les risques liés à l'investissement immobilier ?',
+    answer: 'Comme tout investissement, l\'immobilier comporte des risques : fluctuations du marché, vacance locative, charges imprévues. Nous vous aidons à comprendre et à minimiser ces risques grâce à notre expertise et notre accompagnement personnalisé.'
+  },
+  {
+    question: 'Comment puis-je prendre rendez-vous avec un conseiller RNB ?',
+    answer: 'Vous pouvez facilement prendre rendez-vous avec l\'un de nos conseillers en nous contactant par téléphone, email ou via notre formulaire en ligne. Nous nous engageons à vous répondre dans les plus brefs délais pour organiser une consultation personnalisée.'
   }
 ];
 
@@ -45,7 +65,7 @@ const FAQSection = () => {
             Questions fréquentes
           </h2>
           <p className="text-gray-300 text-lg leading-relaxed">
-            Trouvez les réponses à vos questions sur l'investissement locatif et notre simulateur.
+            Trouvez les réponses à vos questions sur l'investissement immobilier avec RNB.
           </p>
         </div>
 

@@ -22,13 +22,12 @@ const Footer = () => {
           <div className="space-y-6">
             <div className="flex items-center gap-2">
               <Image
-                src="/images/logo-white.png"
+                src="/Add a heading.png"
                 alt="RENTABILIO"
-                width={40}
+                width={150}
                 height={40}
-                className="w-10 h-10"
+                className="object-contain"
               />
-              <span className="text-2xl font-bold">RENTABILIO</span>
             </div>
             <p className="text-gray-400 leading-relaxed">
               Optimisez la rentabilité de votre bien immobilier avec notre expertise et notre accompagnement personnalisé.

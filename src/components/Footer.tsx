@@ -2,14 +2,14 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone } from 'lucide-react';
 
 const navigation = {
   main: [
     { name: 'Accueil', href: '/' },
-    { name: 'Biens', href: '/properties' },
     { name: 'Simulateur', href: '/simulate' },
-    { name: 'Contact', href: '/contact' },
+    { name: 'Contact', href: '/#contact' },
   ],
   legal: [
     { name: 'Mentions légales', href: '/legal' },
@@ -37,31 +37,21 @@ const navigation = {
 
 export function Footer() {
   return (
-    <footer className="bg-gray-900/80 backdrop-blur-sm border-t border-white/10">
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Company Info */}
-          <div className="space-y-4">
-            <Link href="/" className="flex items-center space-x-2">
-              <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500">
-                RENTABILIO
-              </span>
-            </Link>
-            <p className="text-gray-400 text-sm">
-              Investissez dans l'immobilier avec confiance et simplicité.
-              Notre expertise au service de vos projets.
-            </p>
-          </div>
-
+    <footer className="bg-gray-900 border-t border-white/10">
+      <div className="container mx-auto px-4 py-8 sm:py-16">
+        {/* Main Footer Content */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 sm:gap-12 max-w-5xl mx-auto">
           {/* Quick Links */}
-          <div>
-            <h3 className="text-white font-semibold mb-4">Navigation</h3>
+          <div className="flex flex-col sm:items-center md:items-start">
+            <h3 className="text-white font-semibold text-lg sm:text-xl mb-4 sm:mb-6 text-left sm:text-center md:text-left">
+              Liens utiles
+            </h3>
             <ul className="space-y-2">
               {navigation.main.map((item) => (
                 <li key={item.name}>
                   <Link
                     href={item.href}
-                    className="text-gray-400 hover:text-blue-400 transition-colors"
+                    className="text-gray-400 hover:text-[#0fc28b] transition-colors duration-300 text-sm sm:text-base py-1 block text-left sm:text-center md:text-left"
                   >
                     {item.name}
                   </Link>
@@ -71,33 +61,37 @@ export function Footer() {
           </div>
 
           {/* Contact Info */}
-          <div>
-            <h3 className="text-white font-semibold mb-4">Contact</h3>
-            <ul className="space-y-3">
-              <li className="flex items-center space-x-2 text-gray-400">
-                <MapPin className="h-4 w-4" />
-                <span>123 Rue de l'Immobilier, 75000 Paris</span>
+          <div className="flex flex-col sm:items-center md:items-start">
+            <h3 className="text-white font-semibold text-lg sm:text-xl mb-4 sm:mb-6 text-left sm:text-center md:text-left">
+              Contact
+            </h3>
+            <ul className="space-y-2">
+              <li className="flex items-center text-gray-400 group">
+                <MapPin className="h-5 w-5 text-[#0fc28b] mr-3" />
+                <span className="text-sm sm:text-base">Maroc, Casablanca</span>
               </li>
-              <li className="flex items-center space-x-2 text-gray-400">
-                <Phone className="h-4 w-4" />
-                <span>01 23 45 67 89</span>
+              <li className="flex items-center text-gray-400 group">
+                <Phone className="h-5 w-5 text-[#0fc28b] mr-3" />
+                <span className="text-sm sm:text-base">(+212) 660-408470</span>
               </li>
-              <li className="flex items-center space-x-2 text-gray-400">
-                <Mail className="h-4 w-4" />
-                <span>contact@rnb.fr</span>
+              <li className="flex items-center text-gray-400 group">
+                <Mail className="h-5 w-5 text-[#0fc28b] mr-3" />
+                <span className="text-sm sm:text-base">Contact@rentabilio.com</span>
               </li>
             </ul>
           </div>
 
           {/* Legal Links */}
-          <div>
-            <h3 className="text-white font-semibold mb-4">Légal</h3>
+          <div className="flex flex-col sm:items-center md:items-start">
+            <h3 className="text-white font-semibold text-lg sm:text-xl mb-4 sm:mb-6 text-left sm:text-center md:text-left">
+              Légal
+            </h3>
             <ul className="space-y-2">
               {navigation.legal.map((item) => (
                 <li key={item.name}>
                   <Link
                     href={item.href}
-                    className="text-gray-400 hover:text-blue-400 transition-colors"
+                    className="text-gray-400 hover:text-[#0fc28b] transition-colors duration-300 text-sm sm:text-base py-1 block text-left sm:text-center md:text-left"
                   >
                     {item.name}
                   </Link>
@@ -107,17 +101,18 @@ export function Footer() {
           </div>
         </div>
 
+        {/* Bottom Bar */}
         <div className="mt-12 pt-8 border-t border-white/10">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="text-gray-400 text-sm">
-              © {new Date().getFullYear()} RENTABILIO. Tous droits réservés.
+          <div className="flex flex-col sm:flex-row justify-between items-center space-y-6 sm:space-y-0 max-w-5xl mx-auto">
+            <p className="text-gray-400 text-xs sm:text-sm text-left sm:text-center md:text-left">
+              © {new Date().getFullYear()} RENTABILIO. Tous droits réservés. | Site créé par Oussama Hatim
             </p>
-            <div className="flex space-x-6">
+            <div className="flex items-center space-x-6 w-full sm:w-auto justify-start sm:justify-center">
               {navigation.social.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="text-gray-400 hover:text-blue-400 transition-colors"
+                  className="text-gray-400 hover:text-[#0fc28b] transition-colors duration-300"
                 >
                   <span className="sr-only">{item.name}</span>
                   <item.icon className="h-5 w-5" />

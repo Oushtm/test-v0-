@@ -22,6 +22,7 @@ module.exports = {
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
         display: ['Poppins', 'sans-serif'],
+        arabic: ['Noto Sans Arabic', 'sans-serif'],
       },
       boxShadow: {
         'soft': '0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04)',
@@ -35,8 +36,11 @@ module.exports = {
       animation: {
         'pulse-slow': 'pulse 3s infinite',
         'float': 'float 6s infinite',
+        'float-delayed': 'float 6s infinite 2s',
         'bounce-slow': 'bounce 3s infinite',
         'gradient-x': 'gradient-x 15s ease infinite',
+        'spin-slow': 'spin 10s linear infinite',
+        'pulse-slow': 'pulse-slow 8s ease-in-out infinite',
       },
       keyframes: {
         'gradient-x': {
@@ -47,6 +51,22 @@ module.exports = {
           '50%': {
             'background-size': '200% 200%',
             'background-position': 'right center'
+          },
+        },
+        'float': {
+          '0%, 100%': {
+            transform: 'translateY(0)',
+          },
+          '50%': {
+            transform: 'translateY(-20px)',
+          },
+        },
+        'pulse-slow': {
+          '0%, 100%': {
+            opacity: '0.3',
+          },
+          '50%': {
+            opacity: '0.5',
           },
         },
       },
