@@ -1,77 +1,139 @@
-# RNB - Modern Real Estate Investment Platform
+# Rentabilio - Plateforme de Gestion Immobilière Professionnelle
 
-A modern real estate investment platform built with Next.js, TypeScript, and Tailwind CSS.
+Rentabilio est une plateforme innovante de gestion immobilière conçue pour simplifier et optimiser la gestion des biens immobiliers. Notre solution offre une expérience utilisateur moderne et intuitive, permettant aux propriétaires et aux gestionnaires immobiliers de maximiser leurs revenus locatifs.
 
-## Features
+![Rentabilio Screenshot](public/images/hero-property.jpg)
 
-- Modern, responsive design
-- Interactive UI components
-- Smooth animations with Framer Motion
-- Optimized for performance
-- SEO-friendly
+## 👨‍💻 Développeur
 
-## Getting Started
+**Oussama Hatim**
+- Développeur Full Stack
+- LinkedIn : [Oussama Hatim](https://www.linkedin.com/in/oussamahatim/)
+- GitHub : [@oussamahatim](https://github.com/Oushtm)
 
-### Prerequisites
+## 🌟 Caractéristiques Principales
 
-- Node.js 14.x or later
-- npm or yarn
+### Pour les Propriétaires
+- **Estimation Intelligente**: Calculateur de revenus locatifs basé sur les données du marché
+- **Gestion Simplifiée**: Interface intuitive pour suivre vos biens et leurs performances
+- **Analyse Saisonnière**: Optimisation des revenus selon les périodes de l'année
+- **Rapports Détaillés**: Génération automatique de rapports d'analyse personnalisés
+
+### Pour les Locataires
+- **Recherche Intuitive**: Filtres avancés pour trouver le bien idéal
+- **Visite Virtuelle**: Découverte immersive des propriétés
+- **Réservation en Ligne**: Processus de location simplifié et sécurisé
+- **Support Réactif**: Assistance disponible à chaque étape
+
+### Fonctionnalités Techniques
+- Design responsive moderne et élégant
+- Animations fluides avec Framer Motion
+- Performance optimisée et temps de chargement rapides
+- Architecture évolutive et maintenable
+- SEO optimisé pour une meilleure visibilité
+
+## 🛠 Technologies Utilisées
+
+- **Frontend**:
+  - Next.js 14 avec App Router
+  - TypeScript pour un code robuste
+  - Tailwind CSS pour un design moderne
+  - Framer Motion pour des animations fluides
+  - Shadcn/ui pour des composants élégants
+
+- **Backend**:
+  - API Routes de Next.js
+  - Base de données sécurisée
+  - Authentification robuste
+  - Gestion des fichiers optimisée
+
+- **Outils de Développement**:
+  - ESLint pour la qualité du code
+  - Prettier pour un formatage consistant
+  - Husky pour les hooks git
+  - Jest pour les tests unitaires
+
+## 📁 Structure du Projet
+
+```
+rentabilio/
+├── public/                 # Assets statiques
+│   ├── images/            # Images et médias
+│   └── fonts/            # Polices personnalisées
+├── src/
+│   ├── app/              # Pages et routes de l'application
+│   ├── components/       # Composants réutilisables
+│   ├── lib/             # Utilitaires et configurations
+│   ├── styles/          # Styles globaux
+│   └── types/           # Types TypeScript
+├── package.json          # Dépendances du projet
+└── README.md            # Documentation
+```
+
+## 🚀 Démarrage Rapide
+
+### Prérequis
+- Node.js 18.x ou plus récent
+- npm ou yarn
+- Git
 
 ### Installation
 
-1. Clone the repository:
+1. Clonez le dépôt :
 ```bash
-git clone https://github.com/yourusername/rnb.git
-cd rnb
+git clone https://github.com/votre-username/rentabilio.git
+cd rentabilio
 ```
 
-2. Install dependencies:
+2. Installez les dépendances :
 ```bash
 npm install
-# or
+# ou
 yarn install
 ```
 
-3. Run the development server:
+3. Configurez les variables d'environnement :
+```bash
+cp .env.example .env.local
+```
+
+4. Lancez le serveur de développement :
 ```bash
 npm run dev
-# or
+# ou
 yarn dev
 ```
 
-4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+5. Ouvrez [http://localhost:3000](http://localhost:3000) dans votre navigateur
 
-## Project Structure
+## 📱 Captures d'écran
 
-```
-rnb/
-├── public/              # Static assets
-├── src/
-│   ├── components/      # Reusable UI components
-│   ├── pages/           # Next.js pages
-│   ├── styles/          # Global styles
-│   └── utils/           # Utility functions
-├── package.json         # Project dependencies
-├── tailwind.config.js   # Tailwind CSS configuration
-└── tsconfig.json        # TypeScript configuration
-```
+### Page d'Accueil
+![Page d'Accueil](public/images/welcome-home.jpg)
 
-## Technologies Used
+### Simulateur de Revenus
+![Simulateur](public/images/hero-property.jpg)
 
-- [Next.js](https://nextjs.org/) - React framework
-- [TypeScript](https://www.typescriptlang.org/) - Type-safe JavaScript
-- [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
-- [Framer Motion](https://www.framer.com/motion/) - Animation library
-- [Lucide React](https://lucide.dev/) - Icon library
+## 🤝 Contribution
 
-## License
+Les contributions sont les bienvenues ! N'hésitez pas à :
+1. Fork le projet
+2. Créer une branche pour votre fonctionnalité
+3. Commiter vos changements
+4. Pousser vers la branche
+5. Ouvrir une Pull Request
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+## 📄 Licence
 
-## Acknowledgments
+Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de détails.
 
-- Design inspiration from modern real estate platforms
-- Icons from Lucide React
-- Images from Unsplash
-"# Rnb" 
-"# test-v0-" 
+## 📞 Contact
+
+- Site Web : [www.rentabilio.com](https://www.rentabilio.com)
+- Email : contact@rentabilio.com
+- LinkedIn : [Rentabilio](https://www.linkedin.com/company/rentabilio)
+- Instagram : [@rentabilio](https://www.instagram.com/rentabilio)
+
+---
+
+Site développé par [Oussama Hatim](https://www.linkedin.com/in/oussamahatim/) à Casablanca, Maroc 

@@ -22,7 +22,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           <div className="flex-shrink-0">
             <Link href="/" className="text-xl font-light tracking-wide">
-              RNB Invest
+              Rentabilio
             </Link>
           </div>
           
@@ -63,7 +63,7 @@ export default function Navbar() {
           <div className="fixed inset-y-0 right-0 w-full max-w-xs bg-white p-6">
             <div className="flex items-center justify-between mb-8">
               <Link href="/" className="text-xl font-light tracking-wide">
-                RNB Invest
+                Rentabilio
               </Link>
               <button
                 type="button"

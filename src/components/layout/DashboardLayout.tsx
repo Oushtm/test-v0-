@@ -48,7 +48,7 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
             <div className="flex">
               <div className="flex-shrink-0 flex items-center">
                 <Link href="/">
-                  <span className="text-xl font-bold text-gray-900">RNB</span>
+                  <span className="text-xl font-bold text-gray-900">Rentabilio</span>
                 </Link>
               </div>
             </div>

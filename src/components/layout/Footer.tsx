@@ -16,7 +16,7 @@ const Footer = () => {
       { name: 'LinkedIn', icon: Linkedin, href: '#' },
     ],
     contact: [
-      { icon: Mail, text: 'contact@rnb.com' },
+      { icon: Mail, text: 'contact@rentabilio.com' },
       { icon: Phone, text: '+1 (555) 123-4567' },
       { icon: MapPin, text: '123 Real Estate Ave, City, Country' },
     ],
@@ -30,7 +30,7 @@ const Footer = () => {
           <div className="space-y-4">
             <Link href="/" className="flex items-center space-x-2">
               <span className="text-2xl font-bold bg-gradient-to-r from-indigo-400 to-purple-400 text-transparent bg-clip-text">
-                RNB
+                Rentabilio
               </span>
             </Link>
             <p className="text-gray-400 text-sm">

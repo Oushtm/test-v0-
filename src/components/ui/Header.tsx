@@ -37,7 +37,7 @@ export default function Header() {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center">
-            <span className={`text-2xl font-bold ${isScrolled ? 'text-indigo-600' : 'text-white'}`}>RNB</span>
+            <span className={`text-2xl font-bold ${isScrolled ? 'text-indigo-600' : 'text-white'}`}>Rentabilio</span>
           </Link>
 
           {/* Desktop Navigation */}

@@ -130,24 +130,13 @@ export default function HomePage() {
               {/* Background gradient decoration */}
               <div className="absolute inset-0 bg-gradient-to-br from-[#0fc28b]/20 via-transparent to-transparent" />
               
-              <div className="relative z-10">
-                {/* Header with large image */}
-                <div className="relative h-40 sm:h-64 w-full overflow-hidden">
-                  <Image
-                    src={teamMembers[selectedMember].image}
-                    alt={teamMembers[selectedMember].name}
-                    fill
-                    className="object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent" />
-                  
-                  {/* Close button repositioned */}
-                  <DialogClose className="absolute right-3 top-3 sm:right-4 sm:top-4 rounded-full bg-black/50 p-1.5 sm:p-2 opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-[#0fc28b] focus:ring-offset-2 disabled:pointer-events-none">
+              {/* Close button */}
+              <DialogClose className="absolute right-3 top-3 sm:right-4 sm:top-4 rounded-full bg-black/50 p-1.5 sm:p-2 opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-[#0fc28b] focus:ring-offset-2 disabled:pointer-events-none z-50">
                     <X className="h-4 w-4 text-white" />
                     <span className="sr-only">Close</span>
                   </DialogClose>
-                </div>
 
+              <div className="relative z-10">
                 {/* Content */}
                 <div className="p-4 sm:p-6 md:p-8">
                   <DialogHeader className="mb-4 sm:mb-6">

@@ -10,6 +10,8 @@ import Link from 'next/link';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import ReviewsCarousel from '@/components/ReviewsCarousel';
+import { generateAndDownloadPDF } from '@/lib/utils';
+import PDFDownloadButton from '@/components/PDFDownloadButton';
 
 // Step indicators component
 const StepIndicator = ({ currentStep }: { currentStep: number }) => {
@@ -30,7 +32,24 @@ const StepIndicator = ({ currentStep }: { currentStep: number }) => {
               : 'border-gray-500 bg-transparent text-gray-500'
           }`}
         >
-          {step < currentStep + 1 ? <Check className="w-3 h-3" /> : step}
+          {step < currentStep + 1 ? (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="12"
+              height="12"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="w-3 h-3"
+            >
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+          ) : (
+            step
+          )}
         </div>
       ))}
     </div>
@@ -614,6 +633,19 @@ export default function SimulatePage() {
             {/* Blur overlay */}
             <div className="absolute inset-0 bg-black/40 backdrop-blur-md rounded-3xl z-10"></div>
 
+            {/* Mobile-only top button */}
+            <div className="md:hidden mb-8 relative z-20">
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={() => setCurrentStep(4)}
+                className="w-full bg-gradient-to-r from-[#0fc28b] to-[#0fc28b]/80 text-white px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center space-x-2 pointer-events-auto"
+              >
+                <Lock className="w-5 h-5" />
+                <span>Débloquer Mon Estimation</span>
+              </motion.button>
+            </div>
+
             {/* Trust Badge */}
             <div className="flex justify-center mb-6 relative">
               <span className="inline-flex items-center gap-2 bg-gradient-to-r from-[#0fc28b] to-[#0fc28b]/80 text-white px-4 py-1 rounded-full text-xs font-semibold shadow-lg">
@@ -715,8 +747,8 @@ export default function SimulatePage() {
               Elle est indicative. Pour obtenir un rapport d'analyse complet et personnalisé, veuillez remplir vos coordonnées à l'étape suivante.
             </p>
 
-            {/* Unlock Button */}
-            <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
+            {/* Unlock Button - Desktop only */}
+            <div className="absolute inset-0 hidden md:flex items-center justify-center z-20 pointer-events-none">
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
@@ -934,7 +966,7 @@ export default function SimulatePage() {
                       transition={{ duration: 0.5 }}
                       className="flex items-end justify-center text-5xl font-extrabold text-gray-800 gap-2"
                     >
-                      <span>{typeof moderee === 'number' ? moderee.toLocaleString('fr-FR') : moderee}</span>
+                      <span>{typeof moderee === 'number' ? moderee.toString() : moderee}</span>
                       <span className="text-2xl font-semibold ml-1 mb-1 align-baseline">DH</span>
                     </motion.div>
                   ) : (
@@ -970,7 +1002,7 @@ export default function SimulatePage() {
                       transition={{ duration: 0.5 }}
                       className="flex items-end justify-center text-5xl font-extrabold text-gray-800 gap-2"
                     >
-                      <span>{typeof haute === 'number' ? haute.toLocaleString('fr-FR') : haute}</span>
+                      <span>{typeof haute === 'number' ? haute.toString() : haute}</span>
                       <span className="text-2xl font-semibold ml-1 mb-1 align-baseline">DH</span>
                     </motion.div>
                   ) : (
@@ -1005,7 +1037,7 @@ export default function SimulatePage() {
                       transition={{ duration: 0.5 }}
                       className="flex items-end justify-center text-5xl font-extrabold text-gray-800 gap-2"
                     >
-                      <span>{typeof basse === 'number' ? basse.toLocaleString('fr-FR') : basse}</span>
+                      <span>{typeof basse === 'number' ? basse.toString() : basse}</span>
                       <span className="text-2xl font-semibold ml-1 mb-1 align-baseline">DH</span>
                     </motion.div>
                   ) : (
@@ -1082,7 +1114,7 @@ export default function SimulatePage() {
 
           {/* Property Summary with Price Estimates */}
           <div className="mt-8 bg-gradient-to-br from-[#0fc28b]/10 to-[#0fc28b]/10 rounded-xl p-6 border border-[#0fc28b]/20">
-            <div className="flex items-center justify-between mb-6">
+            <div className="flex flex-col sm:flex-row items-center justify-between mb-6 gap-3">
               <h3 className="text-xl font-semibold text-white">Votre Estimation Personnalisée</h3>
               <div className="px-4 py-1 bg-[#0fc28b]/20 rounded-full">
                 <span className="text-[#0fc28b] text-sm font-medium">Rapport Prêt</span>
@@ -1125,7 +1157,7 @@ export default function SimulatePage() {
                     <span className="text-gray-300">Haute Saison</span>
                   </div>
                   <span className="text-white font-medium">
-                    {typeof haute === 'number' ? `${haute.toLocaleString('fr-FR')} DH` : 'Sur consultation'}
+                    {typeof haute === 'number' ? `${haute.toString()} DH` : 'Sur consultation'}
                   </span>
                 </div>
 
@@ -1135,7 +1167,7 @@ export default function SimulatePage() {
                     <span className="text-gray-300">Saison Modérée</span>
                   </div>
                   <span className="text-white font-medium">
-                    {typeof moderee === 'number' ? `${moderee.toLocaleString('fr-FR')} DH` : 'Sur consultation'}
+                    {typeof moderee === 'number' ? `${moderee.toString()} DH` : 'Sur consultation'}
                   </span>
                 </div>
 
@@ -1145,7 +1177,7 @@ export default function SimulatePage() {
                     <span className="text-gray-300">Basse Saison</span>
                   </div>
                   <span className="text-white font-medium">
-                    {typeof basse === 'number' ? `${basse.toLocaleString('fr-FR')} DH` : 'Sur consultation'}
+                    {typeof basse === 'number' ? `${basse.toString()} DH` : 'Sur consultation'}
                   </span>
                 </div>
               </div>
@@ -1177,62 +1209,68 @@ export default function SimulatePage() {
                 </div>
               </div>
 
-              <motion.button
-                onClick={handleDownload}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="w-full bg-gradient-to-r from-[#0fc28b] via-[#0fc28b]/90 to-[#0fc28b]/80 hover:from-[#0fc28b]/90 hover:via-[#0fc28b]/80 hover:to-[#0fc28b]/70 text-white py-4 px-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 group relative overflow-hidden"
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-[#0fc28b]/80 to-[#0fc28b] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="relative flex items-center justify-center space-x-3">
-                  <Download className="w-5 h-5" />
-                  <span className="font-medium">Télécharger Mon Rapport Personnalisé</span>
-                </div>
-              </motion.button>
+              <PDFDownloadButton
+                propertyType={formData.propertyType}
+                rooms={formData.rooms}
+                district={formData.district}
+                fullName={`${formData.firstName} ${formData.lastName}`}
+                phone={formData.phone}
+                email={formData.email}
+                hauteSaison={typeof haute === 'number' ? haute.toString() : haute}
+                saisonModeree={typeof moderee === 'number' ? moderee.toString() : moderee}
+                basseSaison={typeof basse === 'number' ? basse.toString() : basse}
+                onDownload={() => setIsWhatsAppUnlocked(true)}
+              />
 
-              {/* WhatsApp button - only shown for consultation cases */}
+              {/* WhatsApp Button - Only show for consultation cases */}
               {(haute === 'consultation' || moderee === 'consultation' || basse === 'consultation') && (
-                <motion.div className="relative mt-4">
+                <div className="relative mt-4">
+                  <motion.a
+                    href={isWhatsAppUnlocked ? "https://wa.me/212660408470" : "#"}
+                    onClick={(e) => !isWhatsAppUnlocked && e.preventDefault()}
+                    whileHover={{ scale: isWhatsAppUnlocked ? 1.02 : 1 }}
+                    whileTap={{ scale: isWhatsAppUnlocked ? 0.98 : 1 }}
+                    className={`w-full flex items-center justify-center space-x-3 px-6 py-4 rounded-xl text-white transition-all duration-300 ${
+                      isWhatsAppUnlocked 
+                        ? "bg-[#25D366] hover:bg-[#22c35e] shadow-lg hover:shadow-xl" 
+                        : "bg-gray-600/50 cursor-not-allowed"
+                    }`}
+                  >
+                    <div className="flex items-center justify-center space-x-3">
+                      <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                      </svg>
+                      <span className="text-lg font-medium">
+                        {isWhatsAppUnlocked ? "Discuter avec un expert sur WhatsApp" : "Débloquez la discussion WhatsApp"}
+                      </span>
+                    </div>
+                  </motion.a>
                   {!isWhatsAppUnlocked && (
-                    <div className="absolute inset-0 bg-black/60 backdrop-blur-sm rounded-xl z-10 flex items-center justify-center">
-                      <div className="flex items-center space-x-2 text-white">
-                        <Lock className="w-5 h-5" />
-                        <span>Téléchargez le rapport pour débloquer WhatsApp</span>
-                      </div>
+                    <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 whitespace-nowrap">
+                      <p className="text-sm text-gray-400 flex items-center justify-center gap-2">
+                        <Lock className="w-4 h-4" />
+                        Téléchargez votre rapport pour débloquer WhatsApp
+                      </p>
                     </div>
                   )}
-                  <motion.a
-                    href={`https://wa.me/212660408470?text=Bonjour, j'ai effectué une simulation pour mon bien immobilier (${formData.propertyType} à ${formData.district}) et je souhaiterais avoir plus d'informations.`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={(e) => !isWhatsAppUnlocked && e.preventDefault()}
-                    whileHover={isWhatsAppUnlocked ? { scale: 1.02 } : {}}
-                    whileTap={isWhatsAppUnlocked ? { scale: 0.98 } : {}}
-                    className={`w-full bg-[#25D366] text-white py-4 px-8 rounded-xl shadow-lg transition-all duration-300 flex items-center justify-center space-x-3 ${isWhatsAppUnlocked ? 'hover:bg-[#25D366]/90 hover:shadow-xl' : 'opacity-75'}`}
-                  >
-                    <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                    </svg>
-                    <span className="font-medium">Discuter sur WhatsApp</span>
-                  </motion.a>
-                </motion.div>
+                </div>
               )}
 
-              <div className="flex items-center justify-center space-x-2 text-sm text-gray-400">
+              <div className="flex items-center justify-center space-x-2 text-sm text-gray-400 mt-8">
                 <Lock className="w-4 h-4" />
                 <span>100% Gratuit et Confidentiel</span>
               </div>
             </div>
           </div>
 
-          {/* Contact Section */}
-          <div className="mt-6 text-center space-y-4">
+          {/* Contact Section - Other contact methods */}
+          <div className="mt-12 text-center space-y-4">
             <p className="text-gray-300">
-              Besoin d'informations supplémentaires ?
+              Autres moyens de nous contacter
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <motion.a
-                href="tel:+212000000000"
+                href="tel:+212660408470"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 className="flex items-center justify-center space-x-2 px-6 py-3 bg-white/10 hover:bg-white/15 rounded-xl text-white transition-colors duration-200"
@@ -1292,8 +1330,8 @@ export default function SimulatePage() {
 
   return (
     <div key={resetKey} className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900">
-      <div className="container mx-auto px-4 py-12">
-        <div className="max-w-4xl mx-auto">
+      <div className="container mx-auto px-4 py-12 min-h-screen flex flex-col">
+        <div className="max-w-4xl mx-auto w-full flex-1 flex flex-col">
           <div className="flex justify-end mb-4">
             <Button variant="outline" className="bg-white/10 text-white border-white/20" onClick={resetSimulation}>
               Nouvelle simulation
@@ -1305,7 +1343,7 @@ export default function SimulatePage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="relative"
+            className="relative flex-1 flex flex-col justify-center"
           >
             {/* Background decorative elements */}
             <div className="absolute inset-0 -z-10">

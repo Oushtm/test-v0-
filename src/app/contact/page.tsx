@@ -51,9 +51,18 @@ export default function ContactPage() {
         phone: '',
         message: ''
       });
+
+      // Show success message for 5 seconds then reset
+      setTimeout(() => {
+        setFormStatus('idle');
+      }, 5000);
     } catch (error) {
       console.error('Error sending message:', error);
       setFormStatus('error');
+      // Show error message for 5 seconds then reset
+      setTimeout(() => {
+        setFormStatus('idle');
+      }, 5000);
     }
   };
 

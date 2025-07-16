@@ -6,6 +6,17 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
+// Add Instagram window type
+declare global {
+  interface Window {
+    instgrm?: {
+      Embeds: {
+        process(): void;
+      };
+    };
+  }
+}
+
 const categories = [
   { id: 1, name: "Investissement", icon: TrendingUp, count: 12 },
   { id: 2, name: "Financement", icon: BookOpen, count: 8 },
@@ -77,29 +88,6 @@ interface InstagramPost {
 export default function BlogPage() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
-  const [instagramPosts, setInstagramPosts] = useState<InstagramPost[]>([]);
-  const [isLoadingPosts, setIsLoadingPosts] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetchInstagramPosts = async () => {
-      try {
-        const response = await fetch('/api/instagram');
-        if (!response.ok) {
-          throw new Error('Failed to fetch Instagram posts');
-        }
-        const data = await response.json();
-        setInstagramPosts(data.posts);
-      } catch (error) {
-        console.error('Error fetching Instagram posts:', error);
-        setError('Failed to load Instagram posts');
-      } finally {
-        setIsLoadingPosts(false);
-      }
-    };
-
-    fetchInstagramPosts();
-  }, []);
 
   const filteredPosts = allPosts.filter(post => {
     const matchesCategory = !selectedCategory || post.category === selectedCategory;
@@ -174,65 +162,49 @@ export default function BlogPage() {
           <p className="text-gray-400 text-sm sm:text-base">Découvrez nos dernières vidéos et actualités</p>
         </div>
 
-        {isLoadingPosts ? (
-          <div className="flex items-center justify-center p-8 sm:p-12">
-            <div className="animate-spin rounded-full h-8 w-8 sm:h-12 sm:w-12 border-t-2 border-b-2 border-[#0fc28b]"></div>
-          </div>
-        ) : error ? (
-          <div className="text-red-400 bg-red-400/10 rounded-lg p-4">
-            {error}
-          </div>
-        ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-8 w-full max-w-6xl">
-            {instagramPosts.slice(0, 3).map((post) => (
-              <div
-                key={post.id}
-                className="bg-[#0fc28b]/5 backdrop-blur-xl rounded-xl sm:rounded-2xl md:rounded-3xl shadow-2xl border border-[#0fc28b]/10 p-3 sm:p-4 md:p-6 flex flex-col items-center w-full"
-              >
-                {post.type === 'video' ? (
+          {/* Instagram Reel Card */}
+          <div className="bg-[#0fc28b]/5 backdrop-blur-xl rounded-xl sm:rounded-2xl md:rounded-3xl shadow-2xl border border-[#0fc28b]/10 p-3 sm:p-4 md:p-6 flex flex-col items-center w-full">
+            <div className="w-full relative overflow-hidden rounded-lg aspect-[9/16]">
                   <iframe
-                    src={`${post.permalink}embed`}
-                    width="100%"
-                    height="auto"
+                src="https://www.instagram.com/reel/DJRTpIKNbHS/embed"
+                className="absolute inset-0 w-full h-full rounded-lg"
                     frameBorder="0"
+                allowFullScreen
                     scrolling="no"
-                    allowTransparency={true}
-                    allow="encrypted-media"
-                    title={`Instagram ${post.type} ${post.id}`}
-                    className="aspect-square rounded-lg sm:rounded-xl"
-                  />
-                ) : (
+              ></iframe>
+            </div>
+            <div className="mt-4 text-center">
+              <p className="text-sm text-gray-300">Découvrez notre dernier reel</p>
                   <a
-                    href={post.permalink}
+                href="https://www.instagram.com/reel/DJRTpIKNbHS/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="relative aspect-square w-full overflow-hidden rounded-lg sm:rounded-xl"
-                  >
-                    <Image
-                      src={post.thumbnailUrl}
-                      alt={post.caption || 'Instagram post'}
-                      fill
-                      className="object-cover transition-transform duration-300 hover:scale-105"
-                    />
-                  </a>
-                )}
-                {post.caption && (
-                  <p className="mt-3 sm:mt-4 text-xs sm:text-sm text-gray-300 line-clamp-2">
-                    {post.caption}
-                  </p>
-                )}
-                <a
-                  href={post.permalink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-3 sm:mt-4 text-[#0fc28b] hover:text-[#0fc28b]/80 text-xs sm:text-sm font-medium"
+                className="mt-3 inline-flex items-center gap-2 px-6 py-2 bg-[#0fc28b] hover:bg-[#0fc28b]/90 text-white rounded-full text-sm font-medium transition-all duration-300"
                 >
                   Voir sur Instagram
+                <ArrowRight className="w-4 h-4" />
                 </a>
-              </div>
-            ))}
+            </div>
           </div>
-        )}
+
+          {/* Placeholder Cards */}
+          <div className="bg-[#0fc28b]/5 backdrop-blur-xl rounded-xl sm:rounded-2xl md:rounded-3xl shadow-2xl border border-[#0fc28b]/10 p-3 sm:p-4 md:p-6 flex flex-col items-center w-full">
+            <div className="w-full relative overflow-hidden rounded-lg bg-gray-800/50" style={{ paddingBottom: '177.77%' }}>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <p className="text-gray-400 text-sm">Contenu à venir</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-[#0fc28b]/5 backdrop-blur-xl rounded-xl sm:rounded-2xl md:rounded-3xl shadow-2xl border border-[#0fc28b]/10 p-3 sm:p-4 md:p-6 flex flex-col items-center w-full">
+            <div className="w-full relative overflow-hidden rounded-lg bg-gray-800/50" style={{ paddingBottom: '177.77%' }}>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <p className="text-gray-400 text-sm">Contenu à venir</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* Posts Grid */}

@@ -13,10 +13,10 @@ export function AnimatedLogo() {
     >
       <Link 
         href="/" 
-        className="relative flex items-center -ml-20 sm:-ml-16 lg:-ml-48 transition-all duration-300"
+        className="relative flex items-center -ml-32 sm:-ml-24 lg:-ml-64 transition-all duration-300"
       >
         <motion.div 
-          className="relative w-[320px] sm:w-[300px] lg:w-[600px] h-[100px] sm:h-[100px] lg:h-[150px] transition-all duration-300"
+          className="relative w-[400px] sm:w-[300px] lg:w-[600px] h-[120px] sm:h-[100px] lg:h-[150px] transition-all duration-300"
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
         >

@@ -1,0 +1,17 @@
+{
+  "name": "Rentabilio",
+  "short_name": "Rentabilio",
+  "description": "Gestion Immobilière Professionnelle",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0fc28b",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "type": "image/png",
+      "sizes": "1024x1024",
+      "purpose": "any maskable"
+    }
+  ]
+} 

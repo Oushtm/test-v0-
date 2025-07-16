@@ -10,7 +10,7 @@ const testimonials = [
     name: "Sophie Martin",
     role: "Investisseur Immobilier",
     image: "/images/testimonial-1.jpg",
-    content: "RNB a complètement transformé ma façon d'investir dans l'immobilier. Leurs analyses détaillées et leur accompagnement personnalisé m'ont permis de faire des investissements rentables.",
+    content: "Rentabilio a complètement transformé ma façon d'investir dans l'immobilier. Leurs analyses détaillées et leur accompagnement personnalisé m'ont permis de faire des investissements rentables.",
     rating: 5
   },
   {
@@ -18,7 +18,7 @@ const testimonials = [
     name: "Thomas Dubois",
     role: "Propriétaire de Portefeuille",
     image: "/images/testimonial-2.jpg",
-    content: "La plateforme est intuitive et les fonctionnalités d'analyse sont impressionnantes. J'ai pu diversifier mon portefeuille immobilier avec confiance grâce à RNB.",
+    content: "La plateforme est intuitive et les fonctionnalités d'analyse sont impressionnantes. J'ai pu diversifier mon portefeuille immobilier avec confiance grâce à Rentabilio.",
     rating: 5
   },
   {
@@ -26,7 +26,7 @@ const testimonials = [
     name: "Marie Laurent",
     role: "Consultante Immobilière",
     image: "/images/testimonial-3.jpg",
-    content: "En tant que professionnelle du secteur, je recommande vivement RNB à mes clients. Leur expertise et leurs outils sont vraiment à la pointe de la technologie.",
+    content: "En tant que professionnelle du secteur, je recommande vivement Rentabilio à mes clients. Leur expertise et leurs outils sont vraiment à la pointe de la technologie.",
     rating: 5
   }
 ];

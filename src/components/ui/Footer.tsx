@@ -11,7 +11,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
           <div>
             <div className="mb-6">
-              <h3 className="text-2xl font-bold mb-4">RNB Invest</h3>
+              <h3 className="text-2xl font-bold mb-4">Rentabilio</h3>
               <p className="text-cream/80">
                 Votre partenaire de confiance pour tous vos projets d'investissement immobilier.
               </p>
@@ -112,8 +112,8 @@ export default function Footer() {
               </li>
               <li className="flex items-center">
                 <FaEnvelope className="mr-3 text-cream/80" />
-                <a href="mailto:contact@rnbinvest.fr" className="text-cream/80 hover:text-cream transition-colors">
-                  contact@rnbinvest.fr
+                <a href="mailto:contact@rentabilio.com" className="text-cream/80 hover:text-cream transition-colors">
+                  contact@rentabilio.com
                 </a>
               </li>
             </ul>
@@ -123,7 +123,7 @@ export default function Footer() {
         <div className="border-t border-cream/20 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-cream/60 text-sm mb-4 md:mb-0">
-              &copy; {new Date().getFullYear()} RNB Invest. Tous droits réservés.
+              &copy; {new Date().getFullYear()} Rentabilio. Tous droits réservés.
             </p>
             <div className="flex space-x-6">
               <Link href="/privacy" className="text-cream/60 hover:text-cream text-sm transition-colors">

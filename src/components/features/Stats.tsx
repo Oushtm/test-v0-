@@ -61,7 +61,7 @@ export default function Stats() {
             Nos <span className="text-gradient">Chiffres Clés</span>
           </h2>
           <p className="section-subtitle">
-            Découvrez l'impact de RNB sur le marché de l'investissement immobilier.
+            Découvrez l'impact de Rentabilio sur le marché de l'investissement immobilier.
           </p>
         </motion.div>
 
